@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgres12
+    image: postgres:alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: 'myusername'
+      POSTGRES_PASSWORD: 'mypassword'
+      POSTGRES_DB: 'games'
+      PG_DATA: '/var/lib/postgresql/data'
+      POSTGRES_HOST_AUTH_METHOD: trust
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+    depends_on:
+      - postgres
+    links:
+      - postgres:alpine
+    ports:
+      - 3000:3000
+    command: npm run start:prod
+    environment:
+      DATABASE_TYPE: postgres
+      DATABASE_URL: 'postgresql://myusername:mypassword@postgres/games'
