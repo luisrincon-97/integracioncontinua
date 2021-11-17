@@ -9,7 +9,7 @@ import {
   NotFoundException,
   UnprocessableEntityException
 } from '@nestjs/common';
-import GamesService from '../services/games.service';
+import GamesService from '../services/games-service';
 import CreateGameDto from '../dto/games/create-game.dto';
 import UpdateGameDto from '../dto/games/update-game.dto';
 

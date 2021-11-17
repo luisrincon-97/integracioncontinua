@@ -1,4 +1,3 @@
-import CreatePublisherDto from './create-publisher.dto';
 import { IsArray, IsDateString, IsDefined, IsNotEmpty, IsNumber } from 'class-validator';
 
 export default class CreateGameDto {
@@ -20,11 +19,10 @@ export default class CreateGameDto {
   @IsNumber()
   publisherId: number
 
-  constructor(title: string, price: number, tags: string[], releaseDate: Date, publisherId: number) {
+  constructor(title: string, price: number, tags: string[], releaseDate: Date) {
     this.title = title;
     this.price = price;
     this.tags = tags;
     this.releaseDate = releaseDate;
-    this.publisherId = publisherId;
   }
 }
